@@ -1,0 +1,13 @@
+{
+  "name": "htmshop_mern",
+  "version": "1.0.0",
+  "description": "HTM Store for 21 century",
+  "main": "server.js",
+  "repository": "git@github.com:alexakarpov/proshop_mern.git",
+  "author": "Alexandre Karpov <alexakarpov@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
