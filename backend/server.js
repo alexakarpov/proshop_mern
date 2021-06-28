@@ -1,5 +1,10 @@
-const express = require('express') // 'common js' way to import (ES Modules will be covered later)
-const products = require('./data/products')
+// 'common js' way to import (ES Modules will be covered later)
+import express from 'express'
+import products from './data/products.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 const app = express()
 
 app.get('/', (req, res) => {
@@ -15,4 +20,9 @@ app.get('/api/products/:id', (req, res) => {
   res.json(product)
 })
 
-app.listen(5000, console.log('Server running on port 5000... yay?'))
+const PORT = process.env.PORT || 5000
+
+app.listen(
+  PORT,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+)
