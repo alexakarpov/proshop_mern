@@ -3,7 +3,7 @@ import express from 'express'
 import products from './data/products.js'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
-//import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 import productRoutes from './routes/productRoutes.js'
 dotenv.config()
@@ -16,16 +16,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/products', productRoutes)
 
-app.use((err, req, res, next) => {
-  console.log('Custom error middleware starting to process an error')
-  const statusCode = res.statusCode === 200 ? 500 : res.statusCode
-
-  res.statusCode = statusCode
-  res.json({
-    message: err.message,
-    stack: process.env.NODE_ENV === 'production' ? null : err.stack,
-  })
-})
+app.use(notFound)
+app.use(errorHandler)
 
 connectDB()
 
